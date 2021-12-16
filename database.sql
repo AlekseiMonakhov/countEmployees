@@ -1,14 +1,20 @@
-create TABLE employees(
-    id SERIAL PRIMARY KEY,
-    surname VARCHAR(20),
-    firstname VARCHAR(20),
-    patronymic VARCHAR(20)
+create TABLE Employees(
+    EmployeeId INTEGER PRIMARY KEY,
+    EmployeeName VARCHAR(128),
+    EmployeeAge INTEGER,
+    DepartmentTitle VARCHAR(64),
+    FOREIGN KEY (DepartmentTitle) REFERENCES Departments (DepartmentTitle) 
+
+    
 );
 
-create TABLE departments(
-    id SERIAL PRIMARY KEY,
-    title VARCHAR(20),
-    employees_id INTEGER,
-    FOREIGN KEY (employees_id) REFERENCES employees (id)
-     
+create TABLE Departments(
+    DepartmentTitle VARCHAR(64) PRIMARY KEY
+    
 );
+
+-- create TABLE EmployeesDepartments(
+--     EmployeeId INTEGER REFERENCES Employees(EmployeeId),
+--     DepartmentId INTEGER REFERENCES Departments(DepartmentId)
+    
+-- );

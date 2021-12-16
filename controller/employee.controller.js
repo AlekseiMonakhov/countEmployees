@@ -3,8 +3,8 @@ const db = require('../db')
 class EmployeeController {
     async createEmployee (req, res){
         try {
-         const {id, name, age, department} = req.body
-         const newEmployee = await db.query('INSERT INTO Employees (EmployeeId, EmployeeName, EmployeeAge, DepartmentTitle) values ($1, $2, $3, $4) RETURNING *', [id, name, age, department])
+         const {employee_id, employee_name, employee_dept} = req.body
+         const newEmployee = await db.query('INSERT INTO employees (employee_id, employee_name, employee_dept) values ($1, $2, $3) RETURNING *', [employee_id, employee_name, employee_dept])
          res.json(newEmployee.rows)
     }   catch (error) {
          res.json(error) 
@@ -12,7 +12,7 @@ class EmployeeController {
     }     
     async getEmployees (req, res){
         try {
-         const employees = await db.query('SELECT * FROM Employees')
+         const employees = await db.query('SELECT * FROM employees')
          res.json(employees.rows)
     }   catch (error) {
          res.json(error)  
@@ -20,8 +20,8 @@ class EmployeeController {
     }
     async updateEmployee (req, res){
         try {
-         const {id, name, age, department} = req.body
-         const employees = await db.query ('UPDATE Employees set EmployeeName = $1, EmployeeAge = $2, DepartmentTitle = $3 where EmployeeId = $4 RETURNING *', [name, age, department, id])
+         const {employee_id, employee_name, employee_dept} = req.body
+         const employees = await db.query ('UPDATE employees set employee_name = $1, employee_dept = $2 where employee_id = $3 RETURNING *', [employee_name, employee_dept, employee_id])
          res.json(employees.rows)
     }   catch (error) {
          res.json(error)

@@ -1,5 +1,5 @@
 create TABLE departments(
-    dept_id INTEGER NOT NULL,
+    dept_id INTEGER UNIQUE NOT NULL,
     dept_name VARCHAR(64) PRIMARY KEY NOT NULL
     
 );
